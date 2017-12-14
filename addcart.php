@@ -8,5 +8,6 @@
       }
       $_SESSION['cart'][$id]=$quantity;
       header(("location:shoppingCart.php"));
+      exit();
        
  ?> 

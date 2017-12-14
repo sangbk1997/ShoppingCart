@@ -28,4 +28,20 @@
     	$sql="SELECT * from publisher where id=$id";
     	return mysql_query($sql);
     }
+
+    // xóa hàng 
+       function delItems(){
+        session_start();
+        if($_SESSION['cart']){
+            $id=$_GET['productid'];
+            if($id==0){
+                 unset($_SESSION['cart']);
+
+            }else{
+                unset($_SESSION['cart'][$id]);
+           }
+           header("location:shoppingCart.php");
+           exit();
+        }
+    }
  ?>

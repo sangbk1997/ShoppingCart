@@ -15,6 +15,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+      function confirmss(){
+           if(confirm("Bạn có chắc muốn xóa không ??? ")==true){
+                delItems();
+           }
+      }
+  </script>
   <style type="text/css">
   	th{
   		color: #004400;
@@ -42,37 +49,6 @@
   </style>
 </head>
 <body>
-
-<!-- <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Sangbk</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Thông Tin </a>
-       
-      </li>
-      <li><a href="#">Page 2</a></li>
-    </ul>
-    <form class="navbar-form navbar-left">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
-            <i class="glyphicon glyphicon-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-  </div>
-</nav>
-
-*/ -->
 
 <div class="container">
     <h2 class="text-center" style="color: #3300FF">Bảng thông tin mua hàng
@@ -159,7 +135,8 @@
                      	<td colspan="1"></td>
 
                      	<td><input class="btn btn-info btn-block" type="submit" name="submit" value="Cập nhật"></td>
-                     	<td><a href="deleteCart.php?productid=0" class="btn btn-danger btn-block">Hủy giỏ hàng <i class="fa fa-angle-right"></i></a></td>
+                     	<!-- <td><a href="deleteCart.php?productid=0" class="btn btn-danger btn-block">Hủy giỏ hàng <i class="fa fa-angle-right"></i></a></td> -->
+                      <td><input type="button" value="Xóa giỏ hàng" class="btn btn-info btn-block" onclick=" confirmss();"></td>
                      	</tr>
     		           <tr>
     				   <td class="text-center" colspan="5">
