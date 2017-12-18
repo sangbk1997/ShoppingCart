@@ -113,8 +113,7 @@
              if(ajaxRequest.readyState==4){
                  var respond = ajaxRequest.responseText;
                  if(Number(amount) > Number(respond)){
-                     alert("Your choose : " + amount + " books");
-                     alert("But now we having : "+respond + " books");
+                     alert("Your choose : " + amount + " books ! ... -- > "+ " But now we having : "+respond + " books");
                      alert("Please choose a number is smaller than limit !!!");
                  }
              }
