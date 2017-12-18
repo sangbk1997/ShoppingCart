@@ -113,7 +113,7 @@
              if(ajaxRequest.readyState==4){
                  var respond = ajaxRequest.responseText;
                  if(Number(amount) > Number(respond)){
-                     alert("Your choose : " + amount + " books ! ... -- > "+ " But now we having : "+respond + " books");
+                     alert("Your choose : " + amount + " books ! ... -- >"+ " But now we having : "+respond + " books");
                      alert("Please choose a number is smaller than limit !!!");
                  }
              }
@@ -148,6 +148,14 @@
     }
     select{
        margin-left: 30px;
+    }
+    h2{
+      font-size: 40px;
+      font-weight: 500;
+      font-family: Georgia,Arial,Helvetica;
+      color: blue;
+      text-align: center;
+      background-color: #E0EEE0;
     }
 
   	.affect{
@@ -269,12 +277,12 @@
 
                      }
                      else{
-                          echo "<h2 style=\"color: purple ; text-align: center\"> Your shopping cart is empty !!! </h2>";
+                          echo "<h2 style=\"color: purple ;\"> Your shopping cart is empty !!! </h2>";
                      }
                  }
              
                  else{
-                 	echo "<h2 style=\"color: purple; text-align: center\"> Your cart is not initialized  </h2>";
+                 	echo "<h2 style=\"color: purple;\"> Your cart is not initialized  </h2>";
                  }
     		 ?>
     			
