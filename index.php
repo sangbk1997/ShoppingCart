@@ -1,5 +1,5 @@
 
-<?php require('truyvan.php'); ?>
+<?php require('queryFunction.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +29,5 @@
          }
 
 	 ?>
-	 <p align="center"><a href="deleteCart.php?productId=0">Xóa hết</a></p>
 </body>
 </html>
