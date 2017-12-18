@@ -1,52 +1,64 @@
 
-<?php 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trang xác nhận</title>
+</head>
+<body>
+  <?php 
     session_start();
-    require('truyvan.php');
-    if(isset($_POST['submit'])){
-    	foreach ($_POST['qty'] as $key => $value) {
+    require('queryFunction.php');
+    if(isset($_POST['update'])){
+      foreach ($_POST['qty'] as $key => $value) {
+        # code...
+        if($value<=0){
+          unset($_SESSION['cart'][$key]);
+        }elseif($value > 0){
 
-             $_SESSION['name']=$_POST['name'];
-            $_SESSION['phone']=$_POST['phone'];
-            $_SESSION['address']=$_POST['address'];   
-           
-    		# code...
-    		if($value<=0){
-    			unset($_SESSION['cart'][$key]);
-    		}elseif($value > 0){
-    			$_SESSION['cart'][$key]=$value;
-                echo "<br>";
-                echo $_SESSION['cart'][$key];
-             
-    		}
-    	}
-    	header("location:shoppingCart.php");
+              $row=mysql_fetch_array(findbyidbook($key));
+              if($value <= $row['quantity']){
+                  $_SESSION['cart'][$key]=$value;
+              }else{
+                  $_SESSION['cart'][$key]=$row['quantity'];
+              }
+        }
+      }
+    header("location:shoppingCart.php");
     }
-    if(isset($_POST['Payment'])){
+    if(isset($_POST['Payment'])) {
+
+        $name=$_POST['name'];
+        $email=$_POST['email'];
+        $address=$_POST['address'];
+        $phone=$_POST['phonenumber'];
+        $gender=$_POST['dropdown'];
+
+        // thiết lập orderIDlà số hàng hiện có trong database 
+        $sql="SELECT * FROM orderdetail ";
+        $query=mysql_query($sql);
+        $orderId=mysql_num_rows($query);
+        echo $orderId;
 
         foreach ($_SESSION['cart'] as $key => $value) {
             # code...
+          // thểm thông tin mua hàng vào database 
 
+          insertOrderDetail($key, $orderId, $_SESSION['cart'][$key], $_SESSION['cost'][$key]);
+          // chỉnh sửa lại số lượng đầu sách còn trong database
             ChangeQuantity($key,$value);
 
         }
-        ?>
-          <script type="text/javascript">
-              alert("Bạn vừa nhấn vào Thanh Toán");
+        insertCustomer($name, $email, $address, $gender, $phone);
+        if($_SESSION['cart']){
+           unset($_SESSION['cart']);
 
-          </script>
-
-          <h3>Thanh toán được thực hiện</h3>
-
-          <p>
-              Xin chào <b> <?php echo $_POST['name'] ?> </b>
-              bạn vừa mua hàng từ chúng tôi . Hàng của bạn sẽ được đóng gói và gửi cho bạn nhanh nhất có thể tới địa chỉ <b><?php echo $_POST['address'] ?></b> <br>
-              Hẹn gặp lại bạn sau . <b>Chúc bạn một ngày vui vẻ !</b>
-          </p>
-
-        <?php 
-
-        // code update trong co so du lieu 
-
-      //   header("location:shoppingCart.php");
+        }
+        if($_SESSION['cost']){
+          unset($_SESSION['cost']);
+        }
+       header("location:index.php");
     }
  ?>
+</body>
+</html>
